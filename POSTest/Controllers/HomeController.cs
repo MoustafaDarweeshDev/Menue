@@ -37,23 +37,8 @@ namespace POSTest.Controllers
 
         public IActionResult Index()
         {
-            //if (Request.Cookies["Basket_Id"] != null)
-            //{
-            //    var basketId = int.Parse(Request.Cookies["Basket_Id"]);
-            //    var basket = _db.Baskets.Include(o => o.OrderItems).FirstOrDefault(o => o.Id == basketId);
-            //    decimal total = 0;
-            //    foreach (var item in basket.OrderItems)
-            //    {
-            //        total += item.Price;
-            //    }
-            //    ViewData["Basket"] = basket.OrderItems;
-            //    ViewData["BasketTotal"] = total;
-            //}
 
-            //homeMV.Items = _db.Items.Include(o=>o.Prices).ToList();
-            //return View(homeMV);
             return View();
-            //return Json(items);
         }
 
         [HttpGet]
@@ -72,6 +57,12 @@ namespace POSTest.Controllers
         {
             await _itemsRepository.AddItem(itemToAdd);
             return itemToAdd;
+        }
+        [HttpPut]
+        public async Task<Item> UpdateItem([FromBody] Item itemToEdit,int id)
+        {
+            await _itemsRepository.UpdateItem(itemToEdit,id);
+            return itemToEdit;
         }
 
         [HttpPost]
@@ -104,7 +95,6 @@ namespace POSTest.Controllers
             };
         }
 
-
         [HttpGet]
         public Task<int> CreateBasket()
         {
@@ -130,71 +120,12 @@ namespace POSTest.Controllers
         }
 
 
-
-
         [HttpGet]
         public async Task<IReadOnlyList<PricesWithItemsDTO>> GetAllPrices()
         {
             return await _itemsRepository.GetAllPricesAsync();
         }
 
-
-
-
-
-
-
-
-
-        //public async Task<IActionResult> Add(Item itemToAdd, IFormFile Image)
-        //{
-        //    if(Image != null)
-        //    {
-        //        string imageName = "assets/media/image/NewFolder/" + new Guid() + Image.FileName;
-        //        var path = Path.Combine(_env.WebRootPath, imageName);
-        //        using var streamFile = new FileStream(path, FileMode.Create);
-        //        itemToAdd.ImageUrl = config["BaseUrl"] + imageName;
-        //        Image.CopyTo(streamFile);
-        //    }
-
-        //    var resault = _db.Items.Add(itemToAdd);
-
-        //    if (resault !=null)
-        //    {
-        //        await _db.SaveChangesAsync();
-        //    }
-        //    homeMV.Items = _db.Items.Include(o => o.Prices).ToList();
-
-        //    return RedirectToAction("Index", homeMV);
-        //}
-        //public IActionResult Edit(int Id)
-        //{
-        //    var ItemToEdit = _db.Items.Include(o => o.Prices).ToList().FirstOrDefault(x => x.Id == Id);
-        //    ViewData["itemToEdit"] = ItemToEdit;
-        //    homeMV.item = ItemToEdit;
-        //    return RedirectToAction("Index", homeMV);
-
-        //}
-
-        //public async Task<IActionResult> Delete(int Id)
-        //{
-        //    var itemToDelete = _db.Items.Include(o=>o.Prices).ToList().FirstOrDefault(x=>x.Id == Id);
-
-        //    if(itemToDelete != null)
-        //    {
-        //        _db.Items.Remove(itemToDelete);
-        //        await _db.SaveChangesAsync();
-        //    }
-
-
-        //    return RedirectToAction("Index", _db.Items.Include(o => o.Prices).ToList());
-
-        //}
-        //[HttpGet]
-        //public string haha()
-        //{
-        //    return "haha";
-        //}
 
     }
 }

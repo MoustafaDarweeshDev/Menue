@@ -21,9 +21,11 @@ namespace infrastructure.Data
 
         public async Task<Item> AddItem(Item item)
         {
-            _context.Items.Add(item);
-            await _context.SaveChangesAsync();
-            return item;
+
+                _context.Items.Add(item);
+                await _context.SaveChangesAsync();
+                return item;
+            
         }
 
         public async Task<Item> DeleteItemById(int id)
@@ -64,33 +66,24 @@ namespace infrastructure.Data
             return await _context.Items.Include(o => o.Prices).ToListAsync();
         }
 
+        public async Task<Item> UpdateItem(Item item,int id)
+        {
+            var olditem =_context.Items.Find(id);
+            olditem.Price = item.Price;
+            olditem.Name=item.Name;
+            olditem.ImageUrl=item.ImageUrl;
+            olditem.Prices = item.Prices;
+
+            _context.Entry(olditem).State = EntityState.Modified;
+            foreach(var pr in olditem.Prices)
+            {
+                _context.Entry(pr).State = EntityState.Modified;
+
+            }
+            await _context.SaveChangesAsync();
+            return item;
+        }
 
 
-
-
-
-
-        //public async Task<IReadOnlyList<PricesWithItemsDTO>> GetAllPricesAsync()
-        //{
-        //    List<PricesWithItemsDTO> s = new List<PricesWithItemsDTO>();
-        //    var  prices = await _context.Prices.ToListAsync();
-
-        //    foreach (var pr in prices)
-        //    {
-        //        var item = _context.Items.Find(pr.itemId);
-
-        //        PricesWithItemsDTO priceDto = new PricesWithItemsDTO()
-        //        {
-        //            Price = pr,
-        //            Item = item
-        //         };
-        //        s.Add(priceDto);
-        //    }
-
-
-        //    return s;
-        //}
-
-       
     }
 }

@@ -30,7 +30,10 @@ export class ProductsService {
     return this.http.post<IItem>(this.baseUrl+'home/Add',item)
   }
 
+  updateItem(item:IItem , id:number){
+    return this.http.put<IItem>(this.baseUrl + `home/UpdateItem?id=${id}`,item)
 
+  }
   uploadImaage(file:File):Observable<IItemWithImage>{
     var formData = new FormData();
     formData.append('img',file)

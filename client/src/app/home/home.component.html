@@ -96,11 +96,13 @@
   tabindex="-1"
   role="dialog"
   aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title"  >Add new item</h6>
+        <h6 class="modal-title">Add new item</h6>
         <button
           type="button"
           class="close"
@@ -157,9 +159,9 @@
               </div>
             </div>
           </div>
-          <pre>
-            {{this.itemForm.value | json}}
-          </pre>
+          <!-- <pre>
+            {{ this.itemForm.value | json }}
+          </pre> -->
           <div
             formArrayName="Prices"
             *ngFor="let group of Prices.controls; let i = index"
@@ -189,7 +191,10 @@
                 <div class="form-group" style="margin-top: 17%">
                   <!--  -->
                   <!-- href="Javascript:void(0);"  -->
-                  <a class="btn btn-success add-size" (click)="addNewPrice()"
+                  <a
+                    class="btn btn-success add-size"
+                    (click)="addNewPrice()"
+                    *ngIf="i == 0"
                     >Add</a
                   >
                   <a
@@ -203,7 +208,12 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            (click)="clearForm()"
+          >
             Close
           </button>
           <button

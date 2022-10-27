@@ -14,6 +14,7 @@ namespace core.Interfaces
         Task<Item> DeleteItemById(int id);
         Task<Item> AddItem(Item item);
         Task<IReadOnlyList<PricesWithItemsDTO>> GetAllPricesAsync();
+        Task<Item> UpdateItem(Item item, int id);
 
     }
 }

@@ -28,8 +28,6 @@ namespace infrastructure.Data
             return basket;
         }
 
-      
-
         public async Task<int> Createbasket()
         {
             var basket =new Basket();

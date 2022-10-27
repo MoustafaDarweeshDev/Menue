@@ -31,15 +31,15 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/..wwwroot/vendors/bundle.css",
-              "node_modules/..wwwroot/vendors/range-slider/css/ion.rangeSlider.min.css",
-              "node_modules/..wwwroot/assets/css/app.min.css",
+              "src/assets/..wwwroot/vendors/bundle.css",
+              "src/assets/..wwwroot/vendors/range-slider/css/ion.rangeSlider.min.css",
+              "src/assets/..wwwroot/assets/css/app.min.css",
               "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/..wwwroot/vendors/bundle.js",
-              "node_modules/..wwwroot/assets/js/app.min.js"
+              "src/assets/..wwwroot/vendors/bundle.js",
+              "src/assets/..wwwroot/assets/js/app.min.js"
 
             ]
           },

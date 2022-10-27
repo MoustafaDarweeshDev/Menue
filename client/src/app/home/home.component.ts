@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   allItems:IItem[]=[];
   itemForm:FormGroup;
   image:FormGroup;
+  isEdit:boolean=false;
+  itemToEdit: IItem;
 
 
   constructor(private productService:ProductsService , private fb:FormBuilder) { }
@@ -59,18 +61,42 @@ export class HomeComponent implements OnInit {
 
 
   formSubmit(){
-    console.log(this.itemForm.value);
+    console.log(this.isEdit);
 
-    this.productService.AddItem(this.itemForm.value).subscribe(res=>{
-      console.log(res);
-      this.getAllProducts();
-      this.clearForm()
+    // console.log(this.itemForm.value);
+    if(!this.isEdit){
+      console.log("strt adding");
 
+      this.productService.AddItem(this.itemForm.value).subscribe(res=>{
+        console.log(res);
+        this.getAllProducts();
+        this.clearForm()
 
+      },err=>{
+        console.log(err);
+      })
+    }else{
+      console.log('start edit', this.itemToEdit.id);
+      let id = this.itemToEdit.id
 
-    },err=>{
-      console.log(err);
-    })
+        let originalItem = {
+          id:this.itemToEdit.id,
+          name:this.itemForm.get('name')?.value ,
+          imageUrl:this.itemForm.get('imageUrl')?.value ,
+          price:this.itemForm.get('price')?.value ,
+          prices:this.itemForm.get('prices')?.value ,
+        }
+
+      this.productService.updateItem(originalItem, id).subscribe(res=>{
+       this.getAllProducts();
+      },err=>{
+        console.log(err);
+
+      })
+
+      this.isEdit=false
+    }
+    this.ngOnInit();
   }
 
 
@@ -93,53 +119,22 @@ export class HomeComponent implements OnInit {
   }
 
 
-  ///////////
-
-
-
+  //////////
   editItem(item:IItem){
     console.log('tmam');
-
+    this.isEdit=true;
+    this.itemToEdit = item
     for(let i=0; i < this.Prices.controls.length; i++){
-      console.log(this.Prices.controls[i],item.prices[i]);
-
       this.Prices.controls[i].patchValue(item.prices[i])
     }
-
     this.itemForm.patchValue(item);
-    // this.itemForm = this.fb.group({
-    //   name:[item.name,Validators.required],
-    //   price:[item.price,Validators.required],
-    //   Prices: this.fb.array([...item.prices])
-    // });
-
-    // console.log('nset nfsk wl eh',this.Prices.controls[0].value);
-
-
-    // console.log(this.itemForm.get('Prices')?.value);
-    // this.itemForm.get('Prices')?.setValue(item.prices)
-    // console.log(item.prices);
-    // this.itemForm.patchValue({
-    //   name: item.name,
-    //   price: item.price,
-    //   imageUrl: item.imageUrl,
-    // })
-
-    // this.itemForm.get('Prices')?.patchValue(item.prices);
-
-    // this.itemForm.patchValue(item)
-    // this.Prices.patchValue(item.prices)
-
   }
 
   clearForm(){
     this.itemForm.reset()
+    this.isEdit=false
 
   }
-
-
-
-
 
   getAllProducts(){
     this.productService.getAllItems().subscribe(res=>{
