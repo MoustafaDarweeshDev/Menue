@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\kimoa\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\kimoa\\.nuget\\packages"
+    ]
+  }
+}

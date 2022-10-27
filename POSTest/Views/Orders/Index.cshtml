@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="page-header d-md-flex justify-content-between">
+    <div>
+        <h3>Orders</h3>
+        <nav aria-label="breadcrumb" class="d-flex align-items-start">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-action="index" asp-controller="orders">Orders Management</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="user-list" class="table table-lg">
+                        <thead>
+                            <tr>
+                                <th>Order Id</th>
+                                <th>Customer Name</th>
+                                <th>Customer Phone</th>
+                                <th>Order Amount</th>
+                                <th>Order Date</th>
+                                <th>Items</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Ali</td>
+                                <td>12345678</td>
+                                <td>1.6 BHD</td>
+                                <td>2022-04-11 10:15 AM</td>
+                                <td>
+                                    <a href="#" class="btn btn-success">Display</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jaffer</td>
+                                <td>87654321</td>
+                                <td>1.8 BHD</td>
+                                <td>2022-04-10 10:15 AM</td>
+                                <td>
+                                    <a href="#" class="btn btn-success">Display</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Mohammed</td>
+                                <td>65432198</td>
+                                <td>1.1 BHD</td>
+                                <td>2022-04-11 9:13 AM</td>
+                                <td>
+                                    <a href="#" class="btn btn-success">Display</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mdlNew" class="modal fade modal-item" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Add new item</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="ti-close"></i>
+                </button>
+            </div>
+            <div id="frmItem">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Item Name</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Picture</label>
+                                <input type="file" palceholder="Select image" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" for="sizes">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label>Size Name</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Size Price</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group" style="margin-top: 17%;">
+                                <a href="Javascript:void(0);" class="btn btn-success add-size">Add</a>
+                                <a href="Javascript:void(0);" class="btn btn-success remove-size btn-danger">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" id="btnSaveHours" class="btn btn-primary" title="Save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).on('click', '.add-size', function(){
+            var size = $('div[for="sizes"]:first').clone();
+
+            size.find('.add-size').remove();
+            $('#frmItem .modal-body').append(size);
+        });
+
+        $(document).on('click', '.remove-size', function () {
+            $(this).closest('div[for="sizes"]').remove();
+        });
+    </script>
+}

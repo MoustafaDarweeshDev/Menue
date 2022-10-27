@@ -1,0 +1,12 @@
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\bin\Debug\net5.0\core.deps.json
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\bin\Debug\net5.0\core.dll
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\bin\Debug\net5.0\core.pdb
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\core.csproj.AssemblyReference.cache
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\core.GeneratedMSBuildEditorConfig.editorconfig
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\core.AssemblyInfoInputs.cache
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\core.AssemblyInfo.cs
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\core.csproj.CoreCompileInputs.cache
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\core.dll
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\refint\core.dll
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\core.pdb
+T:\_CODE___\task\ASP.NET CORE\POSTest\core\obj\Debug\net5.0\ref\core.dll
