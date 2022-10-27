@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using infrastructure.Data;
 
 namespace infrastructure.Data.Migrations
 {
     [DbContext(typeof(PostContext))]
-    partial class PostContextModelSnapshot : ModelSnapshot
+    [Migration("20221027172900_itemIdFK")]
+    partial class itemIdFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,8 +101,8 @@ namespace infrastructure.Data.Migrations
                     b.Property<string>("SizeName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("SizePrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("SizePrice")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

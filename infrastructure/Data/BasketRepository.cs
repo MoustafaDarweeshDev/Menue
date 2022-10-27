@@ -28,6 +28,8 @@ namespace infrastructure.Data
             return basket;
         }
 
+      
+
         public async Task<int> Createbasket()
         {
             var basket =new Basket();
@@ -44,6 +46,11 @@ namespace infrastructure.Data
             basket.OrderItems.Remove(item);
             await _context.SaveChangesAsync();
             return basket;
+        }
+
+        public Task<Basket> DeleteItemFromBasket(int basketId, Item itemId)
+        {
+            throw new NotImplementedException();
         }
 
         public Basket GetBasket(int id)

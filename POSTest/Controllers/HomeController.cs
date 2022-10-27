@@ -104,15 +104,6 @@ namespace POSTest.Controllers
             };
         }
 
-        //    if(Image != null)
-        //    {
-        //        string imageName = "assets/media/image/NewFolder/" + new Guid() + Image.FileName;
-        //        var path = Path.Combine(_env.WebRootPath, imageName);
-        //        using var streamFile = new FileStream(path, FileMode.Create);
-
-        //        itemToAdd.ImageUrl = config["BaseUrl"] + imageName;
-        //        Image.CopyTo(streamFile);
-        //    }
 
         [HttpGet]
         public Task<int> CreateBasket()
@@ -141,11 +132,11 @@ namespace POSTest.Controllers
 
 
 
-        //[HttpGet]
-        //public async Task<IReadOnlyList<PricesWithItemsDTO>> GetAllPrices()
-        //{
-        //    return await _itemsRepository.GetAllPricesAsync();
-        //}
+        [HttpGet]
+        public async Task<IReadOnlyList<PricesWithItemsDTO>> GetAllPrices()
+        {
+            return await _itemsRepository.GetAllPricesAsync();
+        }
 
 
 

@@ -4,7 +4,11 @@ namespace POSTest.ModelViews
 {
     public class PricesWithItemsDTO
     {
-        public  Price  Price { get; set; }
-        public Item Item { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
+        public string Size { get; set; }
+        public decimal Price { get; set; }
+        
     }
 }

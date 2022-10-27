@@ -7,7 +7,9 @@ namespace core.Entities
     public class Price:BaseEntity
     {
         public string SizeName { get; set; }
-        public string SizePrice { get; set; }
+        public decimal SizePrice { get; set; }
+        public int ItemId { get; set; }
+
 
     }
 }

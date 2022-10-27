@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { IItem ,IItemWithImage} from '../Interfaces/Item';
 import { IBasket } from '../Interfaces/basket';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { IProduct } from '../Interfaces/products';
 
 
 @Injectable({
@@ -53,14 +54,21 @@ export class ProductsService {
     return this.http.get<IBasket>(this.baseUrl + `home/RemoveFromBasket?basketId=${basketId}&itemId=${itemId}`)
   }
 
+  //product page
+  getProducts(){
+    return this.http.get<IProduct[]>(this.baseUrl+'home/GetAllPrices')
+  }
 
 
   //
   private subject = new Subject<any>();
   sendClickEvent() {
   this.subject.next('s');
-}
-getClickEvent(): Observable<any>{
-  return this.subject.asObservable();
-}
+  }
+  getClickEvent(): Observable<any>{
+    return this.subject.asObservable();
+  }
+
+
+
 }

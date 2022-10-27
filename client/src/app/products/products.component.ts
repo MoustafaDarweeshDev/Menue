@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IItem } from '../Interfaces/Item';
+import { IProduct } from '../Interfaces/products';
 import { ProductsService } from './products.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ProductsService } from './products.service';
 })
 export class ProductsComponent implements OnInit {
   allItems:IItem[]=[];
-
+  allProducts:IProduct[]
   constructor(private productService:ProductsService) { }
 
   ngOnInit(): void {
@@ -17,17 +18,16 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllProducts(){
-    this.productService.getAllItems().subscribe(res=>{
-      this.allItems = res;
+    this.productService.getProducts().subscribe(res=>{
+      this.allProducts=res
       console.log(res);
-
 
     },err=>{
       console.log(err);
 
     })
-
   }
+ 
 
   addTobasket(item:IItem){
     var basketId = localStorage.getItem('basket_Id');

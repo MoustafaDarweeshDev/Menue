@@ -10,6 +10,5 @@ namespace core.Entities
     {
         public List<Item> OrderItems { get; set; }=new List<Item>() { };
 
-      
     }
 }

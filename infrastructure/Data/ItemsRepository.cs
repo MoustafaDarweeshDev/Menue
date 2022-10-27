@@ -36,15 +36,39 @@ namespace infrastructure.Data
             return item;
         }
 
-        public Task<IReadOnlyList<PricesWithItemsDTO>> GetAllPricesAsync()
+        public async Task<IReadOnlyList<PricesWithItemsDTO>> GetAllPricesAsync()
         {
-            throw new NotImplementedException();
+            List<PricesWithItemsDTO> itemsToShowDtos = new List<PricesWithItemsDTO>();
+            var prices = await _context.Prices.ToListAsync();
+
+            foreach (var price in prices)
+            {
+                var item = _context.Items.Find(price.ItemId);
+
+                PricesWithItemsDTO itemWithPrice = new PricesWithItemsDTO() { 
+                    Id = item.Id,
+                    Name = item.Name,
+                    ImageUrl=item.ImageUrl,
+                    Size=price.SizeName,
+                    Price = price.SizePrice,
+                };
+                itemsToShowDtos.Add(itemWithPrice);
+            }
+
+            return itemsToShowDtos;
+
         }
 
         public async Task<IReadOnlyList<Item>> GetItemsAsync()
         {
             return await _context.Items.Include(o => o.Prices).ToListAsync();
         }
+
+
+
+
+
+
 
         //public async Task<IReadOnlyList<PricesWithItemsDTO>> GetAllPricesAsync()
         //{
