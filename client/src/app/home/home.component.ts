@@ -129,15 +129,15 @@ export class HomeComponent implements OnInit {
     this.isEdit=true;
     this.itemToEdit = item
     this.createForm();
-    
     for(let i=0; i < item.prices.length-1; i++){
       this.addNewPrice()
     }
-
-    for(let i=0; i < this.Prices.controls.length; i++){
-      this.Prices.controls[i].patchValue(item.prices[i])
-    }
     this.itemForm.patchValue(item);
+    setTimeout(()=>{    for(let i=0; i < this.Prices.controls.length; i++){
+      this.Prices.controls[i].patchValue(item.prices[i])
+    }},100)
+
+    this.itemForm.markAsPristine();
 
   }
 
