@@ -128,7 +128,8 @@ export class HomeComponent implements OnInit {
   editItem(item:IItem){
     this.isEdit=true;
     this.itemToEdit = item
-
+    this.createForm();
+    
     for(let i=0; i < item.prices.length-1; i++){
       this.addNewPrice()
     }
