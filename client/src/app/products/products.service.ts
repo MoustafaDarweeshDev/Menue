@@ -46,8 +46,8 @@ export class ProductsService {
     return this.http.get(this.baseUrl + 'home/CreateBasket')
   }
 
-  addItemToCart( basketId:string ,item:IItem ){
-    return this.http.post<IBasket>(this.baseUrl + 'home/addItemToBasket?id='+basketId , item)
+  addItemToCart( basketId:string ,itemId:number,priceId:number ){
+    return this.http.post<IBasket>(this.baseUrl + `home/addItemToBasket?id=${basketId}&itemId=${itemId}&priceId=${priceId}`,{})
   }
   getBasketById(id:string){
     return this.http.get<IBasket>(this.baseUrl + 'home/getBasketById?id='+id)

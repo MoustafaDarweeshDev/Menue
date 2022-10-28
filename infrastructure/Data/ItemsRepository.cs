@@ -49,6 +49,7 @@ namespace infrastructure.Data
 
                 PricesWithItemsDTO itemWithPrice = new PricesWithItemsDTO() { 
                     Id = item.Id,
+                    priceId = price.Id,
                     Name = item.Name,
                     ImageUrl=item.ImageUrl,
                     Size=price.SizeName,

@@ -20,30 +20,24 @@ export class ProductsComponent implements OnInit {
   getAllProducts(){
     this.productService.getProducts().subscribe(res=>{
       this.allProducts=res
-      console.log(res);
+      console.log('haha' ,res);
 
     },err=>{
       console.log(err);
 
     })
   }
- 
 
-  addTobasket(item:IItem){
+
+  addTobasket(itemId:number,priceId:number ){
     var basketId = localStorage.getItem('basket_Id');
     if(basketId){
-
-      this.productService.addItemToCart(basketId , item).subscribe(res=>{
+      this.productService.addItemToCart(basketId , itemId ,priceId).subscribe(res=>{
         this.productService.basket.next(res)
-
         this.productService.sendClickEvent();
-
-
       },err=>{
         console.log(err);
-
       })
-
     }
   }
 

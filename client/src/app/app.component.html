@@ -24,7 +24,26 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a href="#" title="Cart" class="nav-link" data-toggle="dropdown">
-                <i data-feather="fa fa-shopping-bag">BAG</i>
+                <i data-feather="fa fa-shopping-bag">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-shopping-bag"
+                  >
+                    <path
+                      d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                    ></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg>
+                </i>
               </a>
               <form class="dropdown-menu dropdown-menu-right dropdown-menu-big">
                 <div
@@ -149,26 +168,69 @@
           <li class="parent">
             <a>
               <span class="nav-link-icon">
-                <i data-feather="pie-chart"></i>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-pie-chart"
+                >
+                  <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                  <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                </svg>
               </span>
-              <span> <a routerLink="/">Items Management</a> </span>
+              <span> <a class="p-0" routerLink="/">Items Management</a> </span>
             </a>
           </li>
           <li class="parent">
             <a>
               <span class="nav-link-icon">
-                <i data-feather="pie-chart"></i>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-pie-chart"
+                >
+                  <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                  <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                </svg>
+                <i class="fa fa-solid fa-chart-pie"></i>
               </span>
-              <a routerLink="/products" class="text-danger"> Products</a>
+              <a class="p-0" routerLink="/products"> Products</a>
             </a>
           </li>
           <li class="parent">
             <a asp-controller="orders">
               <span class="nav-link-icon">
-                <i data-feather="pie-chart"></i>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-pie-chart"
+                >
+                  <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                  <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                </svg>
               </span>
               <span>
-                <a routerLink="/orders">Orders</a>
+                <a class="p-0" routerLink="/orders">Orders</a>
               </span>
             </a>
           </li>

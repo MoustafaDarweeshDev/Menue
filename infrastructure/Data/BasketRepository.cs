@@ -19,12 +19,25 @@ namespace infrastructure.Data
         }
 
 
-        public async Task<Basket> AddItemToBasket(int basketId, Item itemToAdd)
+        public async Task<Basket> AddItemToBasket(int basketId, int itemId, int priceId)
         {
             var basket = _context.Baskets.Include(b=>b.OrderItems).FirstOrDefault(b => b.Id == basketId);
             if (basket == null) return null;
-            basket.OrderItems.Add(itemToAdd);
+
+            var item = _context.Items.Include(b => b.Prices).FirstOrDefault(i=>i.Id == itemId);
+            if (item == null) return null;
+
+            var price = _context.Prices.Find(priceId);
+            if (price == null) return null;
+
+         
+            item.Price = price.SizePrice;
+            _context.Entry(item).State = EntityState.Modified;
+            basket.OrderItems.Add(item);
+            
+      
             await _context.SaveChangesAsync();
+
             return basket;
         }
 

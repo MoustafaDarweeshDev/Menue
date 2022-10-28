@@ -33,7 +33,7 @@ namespace POSTest.Controllers
             _env = env;
             this.config = config;
         }
-        public static HomeIndexModelView homeMV = new HomeIndexModelView();
+
 
         public IActionResult Index()
         {
@@ -102,9 +102,9 @@ namespace POSTest.Controllers
         }
 
         [HttpPost]
-        public async Task<Basket> addItemToBasket(int id , [FromBody]Item itemToAdd)
+        public async Task<Basket> addItemToBasket(int id , int itemId,int priceId)
         {
-            return  await _basketRepo.AddItemToBasket(id, itemToAdd);
+            return  await _basketRepo.AddItemToBasket(id, itemId, priceId);
         }
 
         [HttpGet]
