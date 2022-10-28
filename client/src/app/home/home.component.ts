@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { IItem } from '../Interfaces/Item';
 import { ProductsService } from '../products/products.service';
 import {FormGroup , FormControl, Validators, FormBuilder , FormArray} from '@angular/forms'
 import * as $ from 'jquery'
+import * as bootstrap from "bootstrap"
+
 
 @Component({
   selector: 'app-home',
@@ -23,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.getAllProducts();
     this.jqueryTest();
     this.createForm();
+
   }
 
   createbasket(){
@@ -58,7 +61,9 @@ export class HomeComponent implements OnInit {
   get Prices(){
     return this.itemForm.get('Prices') as FormArray;
   }
-
+  set Prices(value:FormArray){
+    this.Prices=value;
+  }
 
   formSubmit(){
     console.log(this.isEdit);
@@ -96,7 +101,7 @@ export class HomeComponent implements OnInit {
 
       this.isEdit=false
     }
-    this.ngOnInit();
+    this.getAllProducts();
   }
 
 
@@ -121,13 +126,18 @@ export class HomeComponent implements OnInit {
 
   //////////
   editItem(item:IItem){
-    console.log('tmam');
     this.isEdit=true;
     this.itemToEdit = item
+
+    for(let i=0; i < item.prices.length-1; i++){
+      this.addNewPrice()
+    }
+
     for(let i=0; i < this.Prices.controls.length; i++){
       this.Prices.controls[i].patchValue(item.prices[i])
     }
     this.itemForm.patchValue(item);
+
   }
 
   clearForm(){
@@ -159,6 +169,8 @@ export class HomeComponent implements OnInit {
   }
 
   jqueryTest(){
+
+
     // var pricesIndex=1;
     // $(document).on('click', '.add-size', function(){
     //     var size = $('div[for="sizes"]:first').clone();

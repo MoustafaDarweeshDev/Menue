@@ -82,10 +82,10 @@ namespace infrastructure.Data
 
             Order order = new Order()
             {
-                CustomerName= cusName,
-                CustomerPhone= custPhone,
-                Total= basket.OrderItems.Sum(o => o.Price),
-                Items= itemss
+                CustomerName = cusName,
+                CustomerPhone = custPhone,
+                Total = basket.OrderItems.Sum(o => o.Price),
+                Items = basket.OrderItems
             };
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();

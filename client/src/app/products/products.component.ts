@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
   getAllProducts(){
     this.productService.getProducts().subscribe(res=>{
       this.allProducts=res
-      console.log('haha' ,res);
+      console.log('prices' ,res);
 
     },err=>{
       console.log(err);

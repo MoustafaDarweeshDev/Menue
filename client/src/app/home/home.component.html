@@ -4,7 +4,11 @@
     <nav aria-label="breadcrumb" class="d-flex align-items-start">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a routerLink="/">Items Management</a>
+          <a
+            routerLink="/"
+            [ngClass]="{ 'bg-danger': isEdit, 'bg-primary': !isEdit }"
+            >Items Management</a
+          >
         </li>
       </ol>
     </nav>
@@ -113,12 +117,8 @@
           <i class="ti-close"></i>
         </button>
       </div>
-      <form
-        id="frmItem"
-        [formGroup]="itemForm"
-        (ngSubmit)="formSubmit()"
-        enctype="multipart/form-data"
-      >
+      <!-- (ngSubmit)="formSubmit()" -->
+      <form id="frmItem" [formGroup]="itemForm" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="row">
             <div class="col-12">
@@ -217,10 +217,14 @@
             Close
           </button>
           <button
+            id="hideMdl"
             type="submit"
             id="btnSaveHours"
             class="btn btn-primary"
             title="Save"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            (click)="formSubmit()"
           >
             Save
           </button>

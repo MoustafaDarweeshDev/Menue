@@ -100,9 +100,6 @@ export class AppComponent implements OnInit {
   placeOrder(){
     this.orderForm.get('items')?.setValue(this.baskt?.orderItems)
     console.log(this.orderForm.value);
-    // console.log(localStorage.getItem('basket_Id'));
-    // console.log(this.orderForm.get('customerName')?.value);
-    // console.log(this.orderForm.get('customerPhone')?.value);
 
     var params1= localStorage.getItem('basket_Id');
     var params2= this.orderForm.get('customerName')?.value;
