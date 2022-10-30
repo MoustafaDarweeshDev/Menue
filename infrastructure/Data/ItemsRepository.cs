@@ -69,16 +69,29 @@ namespace infrastructure.Data
 
         public async Task<Item> UpdateItem(Item item,int id)
         {
-            var olditem =_context.Items.Find(id);
+            var olditem = await _context.Items.Include(o=>o.Prices).FirstOrDefaultAsync(o=>o.Id ==  id);
+            var itemPrices = _context.Prices.Where(o=>o.ItemId == id).ToList();
+
+
             olditem.Price = item.Price;
             olditem.Name=item.Name;
             olditem.ImageUrl=item.ImageUrl;
-            olditem.Prices = item.Prices;
+            olditem.Prices = itemPrices;
 
             _context.Entry(olditem).State = EntityState.Modified;
-            foreach(var pr in olditem.Prices)
+
+            //foreach(var pr in itemPrices)
+            //{
+            //    //pr.SizePrice = item.Prices;
+            //    //_context.Entry(pr).State = EntityState.Modified;
+
+
+            //}
+            for(var i = 0; i < itemPrices.Count; i++)
             {
-                _context.Entry(pr).State = EntityState.Modified;
+                itemPrices[i].SizePrice = item.Prices[i].SizePrice;
+                itemPrices[i].SizeName = item.Prices[i].SizeName;
+                _context.Entry(itemPrices[i]).State = EntityState.Modified;
 
             }
             await _context.SaveChangesAsync();

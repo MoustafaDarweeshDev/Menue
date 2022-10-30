@@ -42,9 +42,6 @@ export class AppComponent implements OnInit {
       this.productService.createBasket().subscribe(res=>{
         this.basketid = res.toString()
         localStorage.setItem("basket_Id", res.toString())
-
-        console.log(res);
-
       },err=>{
         console.log(err);
 
@@ -91,7 +88,7 @@ export class AppComponent implements OnInit {
     this.orderForm = this.fb.group({
       customerName:['',Validators.required],
       customerPhone:['',Validators.required],
-      total:[2],
+      total:[],
       items:[[]],
       orderDate:[null]
     })
@@ -101,12 +98,12 @@ export class AppComponent implements OnInit {
     this.orderForm.get('items')?.setValue(this.baskt?.orderItems)
     console.log(this.orderForm.value);
 
-    var params1= localStorage.getItem('basket_Id');
-    var params2= this.orderForm.get('customerName')?.value;
-    var params3= this.orderForm.get('customerPhone')?.value;
-    if(params1){
+    var basketId= localStorage.getItem('basket_Id');
+    var cusName= this.orderForm.get('customerName')?.value;
+    var cusPhone= this.orderForm.get('customerPhone')?.value;
+    if(basketId){
 
-      this.orderService.placeOrder(params1,params2,params3).subscribe(res=>{
+      this.orderService.placeOrder(basketId,cusName,cusPhone).subscribe(res=>{
         console.log(res);
         this.productService.basket.next(null);
         this.baskt=null
@@ -128,10 +125,6 @@ export class AppComponent implements OnInit {
     const result = basket.orderItems.reduce((accumulator, obj) => {
       return accumulator + obj.price;
     }, 0);
-    console.log(result);
     this.total=result;
   }
-
-
-
 }

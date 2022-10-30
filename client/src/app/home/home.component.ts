@@ -23,14 +23,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProducts();
-    this.jqueryTest();
     this.createForm();
 
   }
 
-  createbasket(){
-
-  }
 
   createForm(){
     this.itemForm = this.fb.group({
@@ -42,6 +38,7 @@ export class HomeComponent implements OnInit {
 
 
   }
+  //form array methods
   private pricesForm():FormGroup{
 
     return this.fb.group({
@@ -49,7 +46,7 @@ export class HomeComponent implements OnInit {
       sizePrice:[]
     })
   }
-  //zoraar el add
+
   addNewPrice(){
     this.Prices.push(this.pricesForm())
   }
@@ -64,6 +61,7 @@ export class HomeComponent implements OnInit {
   set Prices(value:FormArray){
     this.Prices=value;
   }
+  // end of form array methods
 
   formSubmit(){
     console.log(this.isEdit);
@@ -89,11 +87,13 @@ export class HomeComponent implements OnInit {
           name:this.itemForm.get('name')?.value ,
           imageUrl:this.itemForm.get('imageUrl')?.value ,
           price:this.itemForm.get('price')?.value ,
-          prices:this.itemForm.get('prices')?.value ,
+          prices:this.itemForm.get('Prices')?.value ,
         }
 
       this.productService.updateItem(originalItem, id).subscribe(res=>{
        this.getAllProducts();
+       this.clearForm()
+
       },err=>{
         console.log(err);
 
@@ -143,6 +143,8 @@ export class HomeComponent implements OnInit {
 
   clearForm(){
     this.itemForm.reset()
+    // this.Prices.clear()
+    // this.addNewPrice()
     this.isEdit=false
 
   }
@@ -169,22 +171,22 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  jqueryTest(){
+  // jqueryTest(){
 
 
-    // var pricesIndex=1;
-    // $(document).on('click', '.add-size', function(){
-    //     var size = $('div[for="sizes"]:first').clone();
+  //   // var pricesIndex=1;
+  //   // $(document).on('click', '.add-size', function(){
+  //   //     var size = $('div[for="sizes"]:first').clone();
 
-    //     size.find('.add-size').remove();
-    //     size.find('.sname').removeAttr("formControlName").attr("formControlName",`sizeName`)
-    //     size.find('.sprice').removeAttr("formControlName").attr("formControlName",`sizePrice`)
-    //     $('#frmItem .modal-body').append(size);
-    //     size.find('.fmgroup').removeAttr("formGroupName").attr("formGroupName",`${pricesIndex}`)
-    //     pricesIndex++;
-    // });
-    // $(document).on('click', '.remove-size', function () {
-    //     $(this).closest('div[for="sizes"]').remove();
-    // });
-  }
+  //   //     size.find('.add-size').remove();
+  //   //     size.find('.sname').removeAttr("formControlName").attr("formControlName",`sizeName`)
+  //   //     size.find('.sprice').removeAttr("formControlName").attr("formControlName",`sizePrice`)
+  //   //     $('#frmItem .modal-body').append(size);
+  //   //     size.find('.fmgroup').removeAttr("formGroupName").attr("formGroupName",`${pricesIndex}`)
+  //   //     pricesIndex++;
+  //   // });
+  //   // $(document).on('click', '.remove-size', function () {
+  //   //     $(this).closest('div[for="sizes"]').remove();
+  //   // });
+  // }
 }

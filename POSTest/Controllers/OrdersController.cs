@@ -29,12 +29,6 @@ namespace POSTest.Controllers
             return await _orderRepo.GetAllOrdersAsync();
         }
 
-        //[HttpPost]
-        //public async Task<Order> PlaceOrder([FromBody]Order orderToCreate)
-        //{
-        //    return await _orderRepo.CreateOrder(orderToCreate);
-        //}
-
         [HttpPost]
         public async Task<Order> PlaceOrder(int basketId,string custName,string cusPhone)
         {
