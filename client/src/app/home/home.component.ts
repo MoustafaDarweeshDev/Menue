@@ -64,14 +64,10 @@ export class HomeComponent implements OnInit {
   // end of form array methods
 
   formSubmit(){
-    console.log(this.isEdit);
-
-    // console.log(this.itemForm.value);
     if(!this.isEdit){
       console.log("strt adding");
 
       this.productService.AddItem(this.itemForm.value).subscribe(res=>{
-        console.log(res);
         this.getAllProducts();
         this.clearForm()
 
@@ -143,8 +139,6 @@ export class HomeComponent implements OnInit {
 
   clearForm(){
     this.itemForm.reset()
-    // this.Prices.clear()
-    // this.addNewPrice()
     this.isEdit=false
 
   }
@@ -163,7 +157,7 @@ export class HomeComponent implements OnInit {
   delteItem( id:any){
     this.productService.deleteItemById(id).subscribe(res=>{
       console.log('deleted item',res);
-      this.ngOnInit();
+      this.getAllProducts();
 
     },err=>{
       console.log(err);
@@ -189,4 +183,6 @@ export class HomeComponent implements OnInit {
   //   //     $(this).closest('div[for="sizes"]').remove();
   //   // });
   // }
+
+
 }

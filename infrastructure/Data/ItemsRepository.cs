@@ -80,13 +80,6 @@ namespace infrastructure.Data
 
             _context.Entry(olditem).State = EntityState.Modified;
 
-            //foreach(var pr in itemPrices)
-            //{
-            //    //pr.SizePrice = item.Prices;
-            //    //_context.Entry(pr).State = EntityState.Modified;
-
-
-            //}
             for(var i = 0; i < itemPrices.Count; i++)
             {
                 itemPrices[i].SizePrice = item.Prices[i].SizePrice;
@@ -94,6 +87,7 @@ namespace infrastructure.Data
                 _context.Entry(itemPrices[i]).State = EntityState.Modified;
 
             }
+
             await _context.SaveChangesAsync();
             return item;
         }
